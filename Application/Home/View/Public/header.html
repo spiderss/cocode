@@ -1,0 +1,13 @@
+<div class="topbar">
+    <div class="inner">
+        <a class="logo" href="/tp3/" title="tp3.2博客网站">tp3.2博客网站</a>
+        <ul class="nav">
+            <volist name="naves" id="vo">
+                <li <if condition="$current eq $vo['id']">class='current-menu-item'</if> >
+                <a href="__MODULE__/Cate/index/id/{$vo.id}">{$vo.catename}</a></li>
+            </volist>
+      </ul>
+
+
+    </div>
+</div>

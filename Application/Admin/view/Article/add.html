@@ -1,0 +1,112 @@
+<include file="Common/header" />
+<div class="container clearfix">
+    <include file="Common/menu" />
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/admin">首页</a>
+                <span class="crumb-step">&gt;</span><a class="crumb-name" href="{:U('admin/article/index')}">文章管理</a>
+                <span class="crumb-step">&gt;</span><span>新增文章</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-content">
+                <form action=" " method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <table class="insert-tab" width="100%">
+                        <tbody>
+                        <tr>
+                            <th width="120"><i class="require-red">*</i>分类：</th>
+                            <td>
+                                <select name="info[cateid]" id="catid" class="required">
+
+                                    <option value="">请选择</option>
+                                    <volist name="cates" id="vo">
+                                    <option value="{$vo.id}">{$vo.catename}</option>
+                                    </volist>
+
+                                </select>
+                            </td>
+                        </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>标题：</th>
+                                <td>
+                                    <input class="common-text required" id="title" name="info[title]" size="50" value="" type="text">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th><i class="require-red">*</i>缩略图：</th>
+                                <td>
+                                    <input name="pic" id="" type="file">
+                                    <!--<input type="submit" onclick="submitForm('/jscss/admin/design/upload')" value="上传图片"/>-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>描述：</th>
+                                <td><textarea name="info[desc]" class="common-textarea" id="desc" cols="30" style="width: 98%;" rows="3"></textarea></td>
+                            </tr>
+
+                        <tr>
+                            <th>内容：</th>
+                            <td><textarea name="info[content]" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"></textarea></td>
+                        </tr>
+
+                        <!--<tr>-->
+                            <!--<th>状态：</th>-->
+                            <!--<td>-->
+                                <!--<input type="checkbox" name="info[status]" value="1" checked>启用-->
+                                <!--<input type="checkbox" name="info[status]" value="0">禁用-->
+
+                            <!--</td>-->
+                        <!--</tr>-->
+
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="__PUBLIC__/js/kindeditor/kindeditor.config.js"> </script>
+    <script src="__PUBLIC__/js/kindeditor/kindeditor-all-min.js"> </script>
+    <script>
+        $(document).ready(function () {
+            var _kindEditor;
+            KindEditor.ready(function(K) {
+                _kindEditor = K.create('#content', KindEditorOptions);
+
+                K('#upload-photo-btn').click(function () {
+                    var photo_list_item = '';
+                    _kindEditor.loadPlugin('multiimage', function() {
+                        _kindEditor.plugin.multiImageDialog({
+                            showRemote : false,
+                            imageUrl : K('#photo').val(),
+                            clickFn : function(data) {
+                                $.each(data, function (index, item) {
+                                    photo_list_item += '<div class="photo-list"><input type="text" name="photo[]" value="' + item.url + '" class="layui-input layui-input-inline">';
+                                    photo_list_item += '<button type="button" class="layui-btn layui-btn-danger remove-photo-btn">移除</button></div>'
+                                });
+                                $('#photo-container').append(photo_list_item);
+                                _kindEditor.hideDialog();
+                            }
+                        });
+                    });
+                });
+            });
+
+            $('#photo-container').on('click', '.remove-photo-btn', function () {
+                $(this).parent('.photo-list').remove();
+            });
+        });
+    </script>
+    <!--/main-->
+</div>
+</body>
+</html>

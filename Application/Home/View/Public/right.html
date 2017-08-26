@@ -1,0 +1,35 @@
+<div class="sidebar">
+    <ul class="mypages">
+        <li><a href="http://t.qq.com/weibogo2010" class="my-a my-tqq" target="_blank" rel="nofollow"><span><strong>腾讯微博</strong></span>腾讯微博 »</a></li>
+        <li><a href="http://weibo.com/534260789" class="my-a my-weibo" target="_blank" rel="nofollow"><span><strong>新浪微博</strong></span>新浪微博 »</a></li>
+        <li><a href="http://mail.qq.com/cgi-bin/bookcol?colid=20296" class="my-a my-feed" target="_blank" rel="nofollow"><span><strong>订阅本站</strong></span>订阅本站 »</a></li>
+        <li><a href="http://172108624.qzone.qq.com" class="my-a my-theme" target="_blank" rel="nofollow"><span><strong>腾讯博客</strong></span>腾讯博客 »</a></li>
+    </ul>
+    <div class="widget widget_categories"><h3 class="widget-tit">文章分类</h3>
+        <ul>
+            <volist name="naves" id="vo">
+                <li class="cat-item cat-item-18"><a href="__MODULE__/Cate/index/id/{$vo.id}" >{$vo.catename}</a></li>
+            </volist>
+
+    </ul>
+    </div>
+    <div class="widget widget_recent_entries">
+        <h3 class="widget-tit">最新发表</h3>
+        <ul>
+            <volist name="artres" id="vo">
+                <li>
+                    <a href="__MODULE__/Article/index/id/{$vo.id}">{$vo.title}</a>
+                </li>
+            </volist>
+        </ul>
+    </div>
+    <!--友情链接-->
+    <div class="widget widget_links"><h3 class="widget-tit">友情链接</h3>
+    <ul class="xoxo blogroll">
+        <volist name="linkres" id="vo">
+            <li><a href="{$vo.url}" rel="friend" target="_blank">{$vo.title}</a></li>
+        </volist>
+    </ul>
+    </div>
+    <!--友情链接-->
+</div>
